@@ -36,13 +36,16 @@ def get_cards_by_set(set_id):
     cards = Card.query.filter_by(set_id=set_id).all()
     result = []
     for c in cards:
+        # Obtenemos las URLs de las imágenes
+        images = [img.url for img in c.images]
         result.append({
             "id": c.id,
             "name": c.name,
             "supertype": c.supertype,
             "subtypes": c.subtypes,
             "types": c.types,
-            "rarity": c.rarity
+            "rarity": c.rarity,
+            "images": images  
         })
     return jsonify(result), 200
 
@@ -53,6 +56,8 @@ def get_card_detail(card_id):
     if not card:
         return jsonify({"error": "Card not found"}), 404
 
+    images = [img.url for img in card.images]
+
     return jsonify({
         "id": card.id,
         "name": card.name,
@@ -60,7 +65,7 @@ def get_card_detail(card_id):
         "subtypes": card.subtypes,
         "types": card.types,
         "rarity": card.rarity,
-        "images": [img.url for img in card.images],
+        "images": images,
         "markets": [
             {"url": m.url, "updated_at": str(m.updated_at)} for m in card.markets
         ]
