@@ -65,6 +65,7 @@ def get_card_detail(card_id):
         "subtypes": card.subtypes,
         "types": card.types,
         "rarity": card.rarity,
+        "set_id": card.set_id,
         "images": images,
         "markets": [
             {"url": m.url, "updated_at": str(m.updated_at)} for m in card.markets

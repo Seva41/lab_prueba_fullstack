@@ -74,14 +74,16 @@ a:hover {
    =============================== */
 
 /* Lista de sets en grid */
+/* Contenedor de las tarjetas */
 .set-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* Ajusta la cantidad de columnas y el tamaño mínimo de cada tarjeta */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
 
-/* Cada set como tarjeta */
+/* Tarjeta individual */
 .set-item {
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -89,30 +91,62 @@ a:hover {
   padding: 1rem;
   transition: box-shadow 0.3s ease;
   text-align: center;
+
+  /* Flexbox para alinear contenido verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Altura mínima para que todas tengan el mismo tamaño */
+  min-height: 300px;
 }
 
 .set-item:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen del set */
-.set-item img {
+/* Logo del set */
+.set-logo {
+  /* Ajusta el ancho o la altura según necesites */
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 120px;
+  object-fit: contain; /* Mantiene proporciones */
   margin-bottom: 0.5rem;
+}
+
+/* Contenedor del texto */
+.set-text {
+  /* Separa el texto de la imagen y el link */
+  margin-top: auto;
 }
 
 /* Título e información del set */
 .set-title {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .set-info {
   font-size: 0.9rem;
   color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.set-item a {
+  color: #2563eb;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  border: 1px solid #2563eb;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.set-item a:hover {
+  background-color: #2563eb;
+  color: #fff;
 }
 
 /* ===============================
@@ -120,6 +154,7 @@ a:hover {
    =============================== */
 
 /* Lista de cartas en grid */
+/* Contenedor de la lista de cartas */
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -127,17 +162,35 @@ a:hover {
   margin-top: 1rem;
 }
 
-/* Cada carta como tarjeta */
+/* Tarjeta de carta individual */
 .card-item {
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   padding: 1rem;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+
+  /* Para alinear verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Altura mínima para uniformar las tarjetas */
+  min-height: 300px;
 }
 
 .card-item:hover {
-  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen de la carta */
+.card-img {
+  width: 100%;
+  height: 200px;      /* Ajusta según tu preferencia */
+  object-fit: contain; 
+  margin-bottom: 0.5rem;
 }
 
 /* Título y detalles de la carta */
@@ -152,18 +205,91 @@ a:hover {
   color: #4a5568;
 }
 
-/* Vista detallada de una carta */
+.card-item a {
+  color: #2563eb;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  border: 1px solid #2563eb;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+
+.card-item a:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+
+/* Centra la vista de detalle y da un estilo general */
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor principal de la carta */
 .card-detail {
   background: #fff;
-  padding: 1rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  width: 600px;       /* Ajusta según tu preferencia */
+  max-width: 100%;
+}
+
+/* Título y detalles */
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-details {
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+/* Navegación con flechas */
+.nav-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;  /* Espacio entre flechas y la imagen */
   margin-top: 1rem;
 }
 
-.card-detail img {
+/* Imagen de detalle */
+.detail-img {
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Botones de flecha */
+.arrow-button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.arrow-button:hover {
+  color: #2563eb;
+}
+
+/* Botón de volver */
+.back-button {
+  color: #2563eb;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+.back-button:hover {
+  color: #1d4ed8;
 }

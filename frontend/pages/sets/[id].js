@@ -39,27 +39,18 @@ export default function SetDetail() {
       </h1>
       <div className="card-list">
         {cards.map(card => (
-          <div key={card.id} className="card-item">
-            {card.images && card.images[0] && (
-              <img
-                src={card.images[0]}
+            <div key={card.id} className="card-item">
+            <img
+                src={card.images && card.images[0]}
                 alt={card.name}
-                style={{ maxWidth: '150px', marginBottom: '0.5rem' }}
-              />
-            )}
+                className="card-img"
+            />
             <h2 className="card-title">{card.name}</h2>
-            <p className="card-details">
-              Rarity: {card.rarity || 'N/A'}
-            </p>
-            <button
-              onClick={() => router.push(`/cards/${card.id}`)}
-              style={{ marginTop: '0.5rem' }}
-            >
-              Ver Detalle
-            </button>
-          </div>
+            <p className="card-details">Rarity: {card.rarity || 'N/A'}</p>
+            <a href={`/cards/${card.id}`}>Ver Detalle</a>
+            </div>
         ))}
+        </div>
       </div>
-    </div>
   );
 }
