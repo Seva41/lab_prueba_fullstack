@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    container_name: pokemon_db
+    environment:
+      - POSTGRES_DB=pokemon_tcg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: pokemon_backend
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=pokemon_tcg
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    ports:
+      - "5001:5001"
+
+  frontend:
+    build: ./frontend
+    container_name: pokemon_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
