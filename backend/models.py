@@ -39,3 +39,4 @@ class Market(db.Model):
     card_id = db.Column(db.String, db.ForeignKey('card.id'))
     updated_at = db.Column(db.DateTime)
     url = db.Column(db.String)
+    market = db.Column(db.String)

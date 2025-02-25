@@ -8,11 +8,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 db.init_app(app)
 CORS(app)
 
-#@app.before_serving
-#def startup():
-    # Código a ejecutar antes de servir (ej.: inicializar tareas)
-#    pass
-
 # GET /sets: Lista todos los sets
 @app.route('/sets', methods=['GET'])
 def get_sets():
@@ -36,7 +31,7 @@ def get_cards_by_set(set_id):
     cards = Card.query.filter_by(set_id=set_id).all()
     result = []
     for c in cards:
-        # Obtenemos las URLs de las imágenes
+        # Obtener las URLs de las imágenes
         images = [img.url for img in c.images]
         result.append({
             "id": c.id,
@@ -68,7 +63,12 @@ def get_card_detail(card_id):
         "set_id": card.set_id,
         "images": images,
         "markets": [
-            {"url": m.url, "updated_at": str(m.updated_at)} for m in card.markets
+            {
+                "url": m.url,
+                "updated_at": str(m.updated_at),
+                "market": m.market
+            }
+            for m in card.markets
         ]
     }), 200
 
