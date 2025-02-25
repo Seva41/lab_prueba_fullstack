@@ -1,0 +1,395 @@
+/* ===============================
+   Reset básico
+=============================== */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+
+/* ===============================
+   Estilos base para el body
+=============================== */
+body {
+  line-height: 1;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 1rem;
+}
+
+/* Elimina estilos predeterminados en listas */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* Asegura que blockquotes y citas no tengan comillas */
+blockquote, q {
+  quotes: none;
+}
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+/* Tablas */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ===============================
+   Enlaces
+=============================== */
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   Contenedor global
+=============================== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ===============================
+   Vista de Sets
+=============================== */
+
+/* Grid de sets */
+.set-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Tarjeta de cada set */
+.set-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+
+  /* Flex para alinear verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 300px; /* Altura mínima uniforme */
+}
+.set-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo del set */
+.set-logo {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+/* Contenedor de texto en la tarjeta del set */
+.set-text {
+  margin-top: auto;
+}
+
+/* Título e info del set */
+.set-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.set-info {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+/* Botón (link) dentro de la tarjeta de set */
+.set-item a {
+  color: #2563eb;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  border: 1px solid #2563eb;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+.set-item a:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* ===============================
+   Vista de Cartas (Listado)
+=============================== */
+
+/* Grid de cartas */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Tarjeta individual de carta */
+.card-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 300px;
+}
+.card-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Imagen de carta */
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+/* Título y detalles de la carta */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.card-details {
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+/* Botón (link) dentro de la tarjeta de carta */
+.card-item a {
+  color: #2563eb;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  border: 1px solid #2563eb;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+}
+.card-item a:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* ===============================
+   Vista de Detalle de Carta
+=============================== */
+
+/* Contenedor de la vista de detalle */
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Caja principal de la carta */
+.card-detail {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  width: 600px;
+  max-width: 100%;
+}
+
+/* Título y detalles en la vista de detalle */
+.card-detail .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.card-detail .card-details {
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+/* Contenedor para flechas e imagen */
+.nav-arrows {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Imagen en el detalle */
+.detail-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+/* Flechas de navegación */
+.arrow-button {
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%);
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  color: #333;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flecha izquierda */
+.arrow-button.left {
+  left: -2rem; 
+}
+
+/* Flecha derecha */
+.arrow-button.right {
+  right: -2rem; 
+}
+
+.arrow-button:hover {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* Botón de volver (detalle de carta) */
+.back-button {
+  color: #2563eb;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+.back-button:hover {
+  color: #1d4ed8;
+}
+
+/* Sección de mercado */
+.market-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: center; 
+}
+
+.market-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor flex para las tarjetas de mercado */
+.market-list {
+  display: flex;
+  flex-wrap: wrap;        
+  gap: 1rem;              
+  justify-content: center; 
+}
+
+/* Tarjeta individual para cada marketplace */
+.market-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  min-width: 180px;      
+  text-align: center;     
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.market-item p {
+  margin: 0.4rem 0;
+}
+
+.market-item a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.market-item a:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+.arrow-button {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  color: #333;
+  width: 40px;        
+  height: 40px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;  
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.arrow-button:hover {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.nav-wrapper {
+  position: relative;
+  margin: 1rem auto;  
+  display: inline-block; 
+}
