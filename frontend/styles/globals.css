@@ -379,3 +379,30 @@ a:hover { text-decoration: underline; }
   text-decoration: underline;
   color: #0f44d7;
 }
+
+/* ===============================
+   FOOTER
+=============================== */
+
+/* Footer Delgado y Centrado */
+.app-footer {
+  text-align: center;         
+  padding: 0.5rem;           
+  font-size: 0.9rem;          
+  color: #eaeaea;           
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.app-footer p {
+  margin: 0;
+}
+
+.app-footer a {
+  color: #5aa0ff;            
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;  
+}
