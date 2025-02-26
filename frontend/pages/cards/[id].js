@@ -53,12 +53,10 @@ export default function CardDetail() {
 
   return (
     <div className="container detail-view">
-      <a
-        className="back-button"
-        onClick={() => router.push(`/sets/${card.set_id}`)}
-      >
+      <button
+        onClick={() => router.push(`/sets/${card.set_id}`)} style={{ marginBottom: '1rem' }}>
         &larr; Volver a Cartas
-      </a>
+      </button>
 
       <div className="card-detail">
         <h1 className="card-title">{card.name}</h1>
