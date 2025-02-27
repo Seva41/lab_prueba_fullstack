@@ -8,7 +8,7 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
+-- SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -37,7 +37,7 @@ CREATE TABLE public.card (
 );
 
 
-ALTER TABLE public.card OWNER TO ash;
+--ALTER TABLE public.card OWNER TO ash;
 
 --
 -- Name: image; Type: TABLE; Schema: public; Owner: ash
@@ -51,7 +51,7 @@ CREATE TABLE public.image (
 );
 
 
-ALTER TABLE public.image OWNER TO ash;
+--ALTER TABLE public.image OWNER TO ash;
 
 --
 -- Name: image_id_seq; Type: SEQUENCE; Schema: public; Owner: ash
@@ -80,7 +80,7 @@ CREATE TABLE public.market (
 );
 
 
-ALTER TABLE public.market OWNER TO ash;
+--ALTER TABLE public.market OWNER TO ash;
 
 --
 -- Name: market_id_seq; Type: SEQUENCE; Schema: public; Owner: ash
@@ -100,7 +100,7 @@ ALTER TABLE public.market ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 -- Name: set; Type: TABLE; Schema: public; Owner: ash
 --
 
-CREATE TABLE public.set (
+CREATE TABLE public.sets (
     id text NOT NULL,
     name text NOT NULL,
     series text NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE public.set (
 );
 
 
-ALTER TABLE public.set OWNER TO ash;
+--ALTER TABLE public.sets OWNER TO ash;
 
 --
 -- Data for Name: card; Type: TABLE DATA; Schema: public; Owner: ash
@@ -10723,7 +10723,7 @@ COPY public.market (id, card_id, url, updated_at, market) FROM stdin;
 -- Data for Name: set; Type: TABLE DATA; Schema: public; Owner: ash
 --
 
-COPY public.set (id, name, series, printed_total, total, ptcgo_code, release_date, updated_at, symbol_url, logo_url) FROM stdin;
+COPY public.sets (id, name, series, printed_total, total, ptcgo_code, release_date, updated_at, symbol_url, logo_url) FROM stdin;
 sve	Scarlet & Violet Energies	Scarlet & Violet	16	16	SVE	2023-03-31	2024-09-19 19:45:00+00	https://images.pokemontcg.io/sve/symbol.png	https://images.pokemontcg.io/sve/logo.png
 sv3	Obsidian Flames	Scarlet & Violet	197	230	OBF	2023-08-11	2023-08-11 15:00:00+00	https://images.pokemontcg.io/sv3/symbol.png	https://images.pokemontcg.io/sv3/logo.png
 sv3pt5	151	Scarlet & Violet	165	207	MEW	2023-09-22	2023-09-22 15:00:00+00	https://images.pokemontcg.io/sv3pt5/symbol.png	https://images.pokemontcg.io/sv3pt5/logo.png
@@ -10779,7 +10779,7 @@ ALTER TABLE ONLY public.market
 -- Name: set set_pkey; Type: CONSTRAINT; Schema: public; Owner: ash
 --
 
-ALTER TABLE ONLY public.set
+ALTER TABLE ONLY public.sets
     ADD CONSTRAINT set_pkey PRIMARY KEY (id);
 
 
@@ -10788,7 +10788,7 @@ ALTER TABLE ONLY public.set
 --
 
 ALTER TABLE ONLY public.card
-    ADD CONSTRAINT card_set_id_fkey FOREIGN KEY (set_id) REFERENCES public.set(id);
+    ADD CONSTRAINT card_set_id_fkey FOREIGN KEY (set_id) REFERENCES public.sets(id);
 
 
 --
