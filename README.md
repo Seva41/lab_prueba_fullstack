@@ -11,21 +11,20 @@ Este proyecto es una prueba técnica fullstack para Microsystem que integra una 
  - [Notas Adicionales](#Notas-Adicionales)
 
 ## Características
- - API REST en Flask: Proporciona endpoints para listar sets, cartas por set y detalle individual de una carta (incluyendo información de mercado).
- - Frontend en Next.js: Interfaz moderna que permite:
- - Visualizar la lista de sets.
- - Ver cartas de cada set.
- - Visualizar el detalle de cada carta con vista individual y navegación entre cartas.
- - Base de Datos PostgreSQL: Se restaura mediante un backup (database_backup.sql).
- - Orquestación con Docker Compose: Todos los componentes (base de datos, backend y frontend) se despliegan utilizando Docker.
+ * API REST en Flask: Proporciona endpoints para listar sets, cartas por set y detalle individual de una carta (incluyendo información de mercado).
+ * Frontend en Next.js: Interfaz moderna que permite:
+     - Visualizar la lista de sets.
+     - Ver cartas de cada set.
+     - Visualizar el detalle de cada carta con vista individual y navegación entre cartas.
+     - Base de Datos PostgreSQL: Se restaura mediante un backup (database_backup.sql).
+     - Orquestación con Docker Compose: Todos los componentes (base de datos, backend y frontend) se despliegan utilizando Docker.
 
 ## Tecnologías Utilizadas
- - Backend: Python, Flask, Flask-CORS, SQLAlchemy.
- - Frontend: Next.js, React.
- - Base de Datos: PostgreSQL.
- - Contenedores: Docker y Docker Compose.
- - API REST: Endpoints para sets, cartas y detalle de cartas.
- - Docker para crear entornos aislados.
+ - **Backend:** Python, Flask, Flask-CORS, SQLAlchemy.
+ - **Frontend:** Next.js, React.
+ - **Base de Datos:** PostgreSQL.
+ - **Contenedores:** Docker y Docker Compose.
+ - **API REST:** Endpoints para sets, cartas y detalle de cartas.
 
 ## Estructura del Proyecto
 ```
