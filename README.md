@@ -1,98 +1,150 @@
-# Prueba Fullstack - Pokémon TCG API y Frontend
+# Lab Prueba Fullstack - Pokémon TCG API y Frontend
 
-¡Bienvenido a la prueba técnica para desarrolladores Fullstack! En esta prueba, trabajarás con una base de datos que contiene información de los sets y cartas del juego Pokémon TCG. Tu objetivo será construir un backend con una API REST y un frontend para listar y visualizar esta información. 
+Este proyecto es una prueba técnica fullstack para Microsystem que integra una API REST, un frontend moderno y una base de datos PostgreSQL, orquestados en conjunto mediante Docker Compose. Se implementa un backend en Flask para servir datos de sets y cartas del juego de cartas Pokémon TCG, y un frontend en Next.js que permite visualizar los sets, listar sus cartas y ver el detalle individual de cada carta, incluyendo vistas de mercado para cada una.
 
-## Objetivo de la Prueba
+## Contenido
+ - Características
+ - Tecnologías Utilizadas
+ - Estructura del Proyecto
+ - Configuración y Uso
+ - Despliegue con Docker
+ - Notas Adicionales
 
-1. **Backend**:
-   - Implementar un backend con una API REST utilizando la base de datos provista (PostgreSQL).
-   - Construir endpoints para listar:
-     - Los sets disponibles.
-     - Las cartas correspondientes a cada set.
-     - (Opcional) Información detallada de una carta específica.
+## Características
+ - API REST en Flask: Proporciona endpoints para listar sets, cartas por set y detalle individual de una carta (incluyendo información de mercado).
+ - Frontend en Next.js: Interfaz moderna que permite:
+ - Visualizar la lista de sets.
+ - Ver cartas de cada set.
+ - Visualizar el detalle de cada carta con vista individual y navegación entre cartas.
+ - Base de Datos PostgreSQL: Se restaura mediante un backup (database_backup.sql).
+ - Orquestación con Docker Compose: Todos los componentes (base de datos, backend y frontend) se despliegan utilizando Docker.
 
-2. **Frontend**:
-   - Construir una aplicación web para:
-     - Listar los sets disponibles.
-     - Mostrar las cartas correspondientes a cada set.
-     - (Opcional) Visualizar información detallada de una carta en una vista individual.
+## Tecnologías Utilizadas
+ - Backend: Python, Flask, Flask-CORS, SQLAlchemy.
+ - Frontend: Next.js, React.
+ - Base de Datos: PostgreSQL.
+ - Contenedores: Docker y Docker Compose.
+ - API REST: Endpoints para sets, cartas y detalle de cartas.
+ - Docker para crear entornos aislados.
 
-3. **Infraestructura**:
-   - Usar Docker para la configuración del entorno de desarrollo, incluyendo la base de datos y la API.
+## Estructura del Proyecto
 
-## Requisitos
+lab_prueba_fullstack/
+├── backend/
+│   ├── app.py             # Aplicación Flask con los endpoints REST
+│   ├── models.py          # Modelos SQLAlchemy (Set, Card, Image, Market)
+│   ├── config.py          # Configuración de conexión a PostgreSQL
+│   ├── requirements.txt   # Dependencias de Python
+│   └── Dockerfile         # Dockerfile para construir el backend
+│
+├── frontend/
+│   ├── pages/
+│   │   ├── _app.js        # Componente raíz de Next.js (importa globals.css, footer y header)
+│   │   ├── index.js       # Vista principal (listado de sets)
+│   │   ├── sets/
+│   │   │   └── [id].js    # Vista de cartas de un set
+│   │   └── cards/
+│   │       └── [id].js    # Vista de detalle de una carta (navegación entre cartas)
+│   ├── components/
+│   │   ├── Header.js      # Encabezado con título
+│   │   └── Footer.js      # Footer con créditos y enlace a repositorio
+│   ├── styles/
+│   │   └── globals.css    # Estilos globales para toda la aplicación
+│   ├── package.json       # Dependencias y scripts del frontend
+│   └── Dockerfile         # Dockerfile para construir el frontend
+│
+├── database_backup.sql    # Backup de la base de datos PostgreSQL
+└── docker-compose.yml     # Orquestación de contenedores (db, backend, frontend)
 
-### Obligatorios
-- Backend en **Node.js**, **Python** (Flask/Django), o cualquier lenguaje de tu preferencia.
-- Frontend en **React**, **Vue**, **Nextjs** o **Astro**.
-- Documentación clara de los endpoints en el backend.
+## Configuración y Uso
 
-### Suma Puntos
-Sabemos que tu tiempo es valioso!, asi que si si logras implementar alguno de estos aspectos podrás sumar algunos punto extras
+### Desarrollo Local
+	1.	Clona el repositorio:
+´´´bash
+git clone https://github.com/Seva41/lab_prueba_fullstack.git
+cd lab_prueba_fullstack
+´´´
 
-- Implementar una vista individual para cada carta en el frontend.
-- Añadir un buscador o filtro en el frontend para buscar cartas por nombre, rareza, o tipo.
-- Usar Tailwind para estilizar el frontend.
-- Desplegar la base de datos PostgreSQL mediante Docker.
-- Desplegar la aplicación mediante Docker.
+	2.	Configura las variables de entorno (si es necesario):
+Crea un archivo .env.local en la carpeta frontend/ con:
+´´´bash
+NEXT_PUBLIC_API_URL=http://localhost:5001
+´´´
 
-## Base de Datos
-El esquema de la base de datos contiene las siguientes tablas:
+	3.	Levanta el stack de Docker:
+´´´bash
+docker-compose up --build
+´´´
 
-1. **set**:
-   - Información sobre los sets de cartas (nombre, serie, cantidad total, fecha de lanzamiento, etc.).
+	4.	Accede a la aplicación:
+ - Frontend: http://localhost:3000
+ - Backend: http://localhost:5001
 
-2. **card**:
-   - Información de las cartas (nombre, supertipo, subtipo, rareza, etc.).
-   - Relación con un set específico.
+### Pruebas y Uso
+ - *Endpoints de API REST (Backend):*
+ - GET /sets: Lista todos los sets.
+ - GET /sets/:id/cards: Lista las cartas de un set.
+ - GET /cards/:id: Devuelve la información detallada de una carta (incluye imágenes y datos de mercado).
+ - *Frontend:*
+ - Visualización de sets y cartas.
+ - Vista individual de carta con navegación entre cartas.
 
-3. **image**:
-   - URLs de imágenes de las cartas.
+### Despliegue con Docker
 
-4. **market**:
-   - Información del mercado relacionada con las cartas.
+El proyecto se despliega mediante Docker Compose, que incluye tres servicios:
+ - db: Usa la imagen oficial de PostgreSQL. Se restaura la base de datos a partir del archivo database_backup.sql (esto ocurre solo en el primer arranque, cuando el volumen está vacío).
+ - backend: Construido a partir de backend/Dockerfile, ejecuta la API REST en Flask.
+ - frontend: Construido a partir de frontend/Dockerfile, ejecuta la aplicación Next.js.
 
-Puedes ver el esquema completo en el archivo `resources/database-diagram.png` incluido.
+El archivo docker-compose.yml define la red y los volúmenes para que los contenedores se comuniquen entre sí.
 
-## Instrucciones
+Ejemplo de docker-compose.yml:
+´´´yml
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    container_name: pokemon_db
+    environment:
+      - POSTGRES_DB=pokemon_tcg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./database_backup.sql:/docker-entrypoint-initdb.d/database_backup.sql
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
-1. **Configuración del Entorno**:
-   - Clona este repositorio.
-   - Carga la base de datos en PostgreSQL usando el backup incluido (`database_backup.sql`).
-   - (Opcional) Configura un contenedor Docker para la base de datos.
+  backend:
+    build: ./backend
+    container_name: pokemon_backend
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=pokemon_tcg
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    ports:
+      - "5001:5001"
 
-2. **Backend**:
-   - Configura tu backend para conectarse a la base de datos PostgreSQL.
-   - Implementa los siguientes endpoints:
-     - `GET /sets`: Lista todos los sets.
-     - `GET /sets/:id/cards`: Lista todas las cartas de un set específico.
-     - (Opcional) `GET /cards/:id`: Devuelve información detallada de una carta.
+  frontend:
+    build: ./frontend
+    container_name: pokemon_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
 
-3. **Frontend**:
-   - Construye una interfaz de usuario que:
-     - Liste los sets disponibles.
-     - Muestra las cartas de un set seleccionado.
-     - (Opcional) Visualiza información detallada de una carta.
+volumes:
+  postgres_data:
+´´´
 
-4. **Ejecución**:
-   - Proporciona instrucciones claras en este archivo para ejecutar la aplicación.
-   - (Opcional) Usa Docker Compose para levantar la base de datos, el backend y el frontend.
-
-## Entrega
-
-Por favor, entrega tu solución de la siguiente manera:
-- Un repositorio en GitHub con el código del backend, frontend, y los archivos de configuración de Docker.
-- Instrucciones claras en este archivo para ejecutar la aplicación.
-- (Opcional) Un enlace a un despliegue funcional (por ejemplo, en Heroku, Vercel, o similares).
-- **Tienes 1 semana para entregar una vez aceptado el desafío**
-
-## Evaluación
-
-Se evaluará:
-- Correcta implementación de los endpoints requeridos.
-- Funcionalidad y diseño del frontend.
-- Organización y claridad del código.
-- Documentación.
-- Implementación de las características opcionales (si aplica).
-
-¡Buena suerte y que la creatividad te acompañe!
+## Notas Adicionales
+ - Persistencia de Datos:
+El volumen postgres_data asegura que los datos de la base de datos persistan entre reinicios. Si se necesita volver a ejecutar el backup, elimina este volumen.
+ - Despliegue en la Nube:
+Si se decide desplegar en un servicio gratuito (como AWS, Oracle Cloud, etc.), se debe recordar configurar los grupos de seguridad o firewall para exponer los puertos necesarios (por ejemplo, 3000, 5001 y 5432, según corresponda).
+ - API REST y Rutas:
+La API REST en Flask sigue convenciones estándar, lo que facilita la integración con el frontend. Además, se ha implementado una vista individual de carta y navegación entre cartas.
