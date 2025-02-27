@@ -28,7 +28,7 @@ Este proyecto es una prueba técnica fullstack para Microsystem que integra una 
  - Docker para crear entornos aislados.
 
 ## Estructura del Proyecto
-
+```
 lab_prueba_fullstack/
 ├── backend/
 │   ├── app.py             # Aplicación Flask con los endpoints REST
@@ -55,26 +55,27 @@ lab_prueba_fullstack/
 │
 ├── database_backup.sql    # Backup de la base de datos PostgreSQL
 └── docker-compose.yml     # Orquestación de contenedores (db, backend, frontend)
+```
 
 ## Configuración y Uso
 
 ### Desarrollo Local
 	1.	Clona el repositorio:
-´´´bash
+```bash
 git clone https://github.com/Seva41/lab_prueba_fullstack.git
 cd lab_prueba_fullstack
-´´´
+```
 
 	2.	Configura las variables de entorno (si es necesario):
 Crea un archivo .env.local en la carpeta frontend/ con:
-´´´bash
+```bash
 NEXT_PUBLIC_API_URL=http://localhost:5001
-´´´
+```
 
 	3.	Levanta el stack de Docker:
-´´´bash
+```bash
 docker-compose up --build
-´´´
+```
 
 	4.	Accede a la aplicación:
  - Frontend: http://localhost:3000
@@ -99,7 +100,7 @@ El proyecto se despliega mediante Docker Compose, que incluye tres servicios:
 El archivo docker-compose.yml define la red y los volúmenes para que los contenedores se comuniquen entre sí.
 
 Ejemplo de docker-compose.yml:
-´´´yml
+```yml
 version: '3.8'
 services:
   db:
@@ -139,7 +140,7 @@ services:
 
 volumes:
   postgres_data:
-´´´
+```
 
 ## Notas Adicionales
  - Persistencia de Datos:
