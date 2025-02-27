@@ -3,12 +3,12 @@
 Este proyecto es una prueba técnica fullstack para Microsystem que integra una API REST, un frontend moderno y una base de datos PostgreSQL, orquestados en conjunto mediante Docker Compose. Se implementa un backend en Flask para servir datos de sets y cartas del juego de cartas Pokémon TCG, y un frontend en Next.js que permite visualizar los sets, listar sus cartas y ver el detalle individual de cada carta, incluyendo vistas de mercado para cada una.
 
 ## Contenido
- - Características
- - Tecnologías Utilizadas
- - Estructura del Proyecto
- - Configuración y Uso
- - Despliegue con Docker
- - Notas Adicionales
+ - [Características](#Características)
+ - [Tecnologías Utilizadas](#Tecnologías-Utilizadas)
+ - [Estructura del Proyecto](#Estructura-del-Proyecto)
+ - [Configuración y Uso](#Configuración-y-Uso)
+ - [Despliegue con Docker](#Despliegue-con-Docker)
+ - [Notas Adicionales](#Notas-Adicionales)
 
 ## Características
  - API REST en Flask: Proporciona endpoints para listar sets, cartas por set y detalle individual de una carta (incluyendo información de mercado).
@@ -60,37 +60,37 @@ lab_prueba_fullstack/
 ## Configuración y Uso
 
 ### Desarrollo Local
-	1.	Clona el repositorio:
+1. Clona el repositorio:
 ```bash
 git clone https://github.com/Seva41/lab_prueba_fullstack.git
 cd lab_prueba_fullstack
 ```
 
-	2.	Configura las variables de entorno (si es necesario):
+2. Configura las variables de entorno (si es necesario):
 Crea un archivo .env.local en la carpeta frontend/ con:
 ```bash
 NEXT_PUBLIC_API_URL=http://localhost:5001
 ```
 
-	3.	Levanta el stack de Docker:
+3. Levanta el stack de Docker:
 ```bash
 docker-compose up --build
 ```
 
-	4.	Accede a la aplicación:
+4. Accede a la aplicación:
  - Frontend: http://localhost:3000
  - Backend: http://localhost:5001
 
 ### Pruebas y Uso
- - *Endpoints de API REST (Backend):*
- - GET /sets: Lista todos los sets.
- - GET /sets/:id/cards: Lista las cartas de un set.
- - GET /cards/:id: Devuelve la información detallada de una carta (incluye imágenes y datos de mercado).
- - *Frontend:*
- - Visualización de sets y cartas.
- - Vista individual de carta con navegación entre cartas.
+ * **Endpoints de API REST (Backend):**
+     - GET /sets: Lista todos los sets.
+     - GET /sets/:id/cards: Lista las cartas de un set.
+     - GET /cards/:id: Devuelve la información detallada de una carta (incluye imágenes y datos de mercado).
+ * **Frontend:**
+     - Visualización de sets y cartas.
+     - Vista individual de carta con navegación entre cartas.
 
-### Despliegue con Docker
+## Despliegue con Docker
 
 El proyecto se despliega mediante Docker Compose, que incluye tres servicios:
  - db: Usa la imagen oficial de PostgreSQL. Se restaura la base de datos a partir del archivo database_backup.sql (esto ocurre solo en el primer arranque, cuando el volumen está vacío).
